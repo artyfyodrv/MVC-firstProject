@@ -1,5 +1,6 @@
 <?php include_once "head.php"; ?>
 
+
 <div class="container mt-4">
     <h1>Авторизация</h1>
     <form action="/login" method="POST">
