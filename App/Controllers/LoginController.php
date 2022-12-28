@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Entities\User;
 use App\Kernel\Connections\MySQLConnection;
+use App\Kernel\LoginValidation;
 
 class LoginController
 {
@@ -16,27 +17,17 @@ class LoginController
 
     static function loginSuccess()
     {
-
+        $errorsLogin = [];
         $user = new User();
 
-        $bdlogin = $user->getLogin();
-        $bdpass = $user->getPassword();
+        $objValidations = new LoginValidation();
+        $errorsLogin = $objValidations->validateForms($user);
 
-        $connect = MySQLConnection::getInstance();
-        $result = $connect->getConnection()
-            ->query("SELECT * FROM users WHERE login='$bdlogin' and password='$bdpass'");
-
-        $numrows = mysqli_num_rows($result);
-
-        if ($numrows !=1)
-        {
-            echo "Пользователь $bdlogin не найден";
-        } else {
-            echo "Пользовать $bdlogin найден";
+        if (empty($errorsLogin)) {
+            header('Location: cabinet');
+            exit();
         }
 
-        var_dump($numrows);
-        var_dump($result);
 
         include_once __DIR__ . "/../Views/login.php";
     }
