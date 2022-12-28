@@ -1,0 +1,11 @@
+{
+    "name": "arty/local",
+    "autoload": {
+        "psr-4": {
+            "App\\": "App/"
+        }
+    },
+    "require": {
+        "ext-mysqli": "*"
+    }
+}
