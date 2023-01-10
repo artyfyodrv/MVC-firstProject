@@ -13,11 +13,11 @@ class LoginValidation
 
     public function validateForms(User $user): ?array
     {
-        $this->checkForm($user->getLogin(), $user->getPassword());
+        $this->checkLogin($user->getLogin(), $user->getPassword());
 
         return $this->validateError;
     }
-    protected function checkForm(string $login, string $password): void
+    protected function checkLogin(string $login, string $password): void
     {
         $connect = MySQLConnection::getInstance();
         $result = $connect->getConnection()

@@ -1,6 +1,5 @@
 <?php include_once "head.php"; ?>
 
-
 <div class="container mt-4">
     <h1>Авторизация</h1>
     <form action="/login" method="POST">
@@ -11,8 +10,14 @@
         <button type="submit" class="btn btn-success">Завершить</button>
     </form>
 </div>
-
-<h2><?= $login ?? ''; ?></h2>
-<h2><?= $password ?? ''; ?> </h2>
+    <h1><?php if (empty($errorsLogin) && $_SERVER['REQUEST_METHOD'] === "POST") {
+        echo "Авторизация успешна";
+        } else {
+            if (!empty($errorsLogin)) {
+                foreach ($errorsLogin as $value) {
+                    echo "$value<br>";
+                }
+            }
+        } ?></h1>
 
 <?php include_once "footer.php"; ?>

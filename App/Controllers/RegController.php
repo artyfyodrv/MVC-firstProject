@@ -28,16 +28,19 @@ class RegController
         $objValidations = new Validations();
         $errors = $objValidations->validatesForms($user);
 
-        $login = $user->getLogin();
-        $p = $user->getPassword();
-        $e = $user->getEmail();
-        $n = $user->getName();
+        // прием данных с user
+        $bdlogin = $user->getLogin();
+        $bdpass = $user->getPassword();
+        $bdemail = $user->getEmail();
+        $bdname = $user->getName();
 
-        if (empty($errors)) {
+        // запись в бд если нет ошибок в $errors
+        if (empty($errors))
+        {
             $connect = MySQLConnection::getInstance();
             $connect->getConnection()
                 ->query("INSERT INTO users(`login`, `password`, `email`, `user_name`)
-                            VALUE ('$login', '$p', '$e', '$n');");
+                            VALUE ('$bdlogin', '$bdpass', '$bdemail', '$bdname');");
         }
 
         include_once __DIR__ . "/../Views/registration.php";

@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Entities\User;
-use App\Kernel\Connections\MySQLConnection;
 use App\Kernel\LoginValidation;
 
 class LoginController
@@ -23,12 +22,19 @@ class LoginController
         $objValidations = new LoginValidation();
         $errorsLogin = $objValidations->validateForms($user);
 
+
         if (empty($errorsLogin)) {
             header('Location: cabinet');
-            exit();
+            $_SESSION['auth'] = true;
+        } else {
+
+            include_once __DIR__ . "/../Views/login.php";
         }
+    }
+        static function logOut()
+        {
+            session_destroy();
+            header('Location: http://127.0.0.1:8080');
 
-
-        include_once __DIR__ . "/../Views/login.php";
     }
 }

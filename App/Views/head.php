@@ -21,12 +21,18 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/">Главная</a>
             </li>
+            <?php if (!empty($_SESSION['auth'])) { ?>
+            <li class="logout">
+                <a class="nav-link" href="/logout">Выход</a>
+            </li>
+            <?php } else { ?>
             <li class="nav-item">
                 <a class="nav-link" href="/registration">Регистрация</a>
             </li>
             <li class="auth">
                 <a class="nav-link" href="/login">Авторизация</a>
             </li>
+            <?php } ?>
         </ul>
     </div>
 </nav>
