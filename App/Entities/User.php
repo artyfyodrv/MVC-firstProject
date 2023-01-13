@@ -50,6 +50,11 @@ class User
         return $this->email;
     }
 
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
 
     public function setLogin(string $login): void
     {
@@ -69,5 +74,10 @@ class User
     public function setEmail(string $email): void
     {
         $this->email = $email;
+    }
+
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 }

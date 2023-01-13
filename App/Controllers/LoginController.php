@@ -26,6 +26,9 @@ class LoginController
         if (empty($errorsLogin)) {
             header('Location: cabinet');
             $_SESSION['auth'] = true;
+            $_SESSION['login'] = $user->getLogin();
+            $_SESSION['username'] = $user->getName();
+
         } else {
 
             include_once __DIR__ . "/../Views/login.php";
