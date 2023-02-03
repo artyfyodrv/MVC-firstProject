@@ -34,9 +34,12 @@ class RegController
         $bdemail = $user->getEmail();
         $bdname = $user->getName();
 
+
         // запись в бд если нет ошибок в $errors
         if (empty($errors))
         {
+            $bdpass = password_hash($bdpass, PASSWORD_DEFAULT);
+
             $connect = MySQLConnection::getInstance();
             $connect->getConnection()
                 ->query("INSERT INTO users(`login`, `password`, `email`, `user_name`)

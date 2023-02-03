@@ -1,9 +1,9 @@
 <?php include_once "head.php"; ?>
     <div class="container mt-4">
+        <form action="/registration" method="POST">
         <h1>Регистрация</h1>
-        <form action="/registration" method="post">
             <label>Имя пользователя</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="Enter username">
+            <input type="text" class="form-control" name="name" id="'name" placeholder="Enter Username">
             <label>Электронная почта</label>
             <input type="text" class="form-control" name="email" id="email" placeholder="Enter Email">
             <label>Логин</label>
@@ -23,6 +23,5 @@
                         }
                     }
                 } ?></h1>
-        </form>
     </div>
 <?php include_once "footer.php"; ?>
