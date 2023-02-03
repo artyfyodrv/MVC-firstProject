@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.2.1-fpm
 
 # Яндекс зеркало для debian
 COPY ./config/debian/sources.list /etc/apt/sources.list
@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     libfreetype6 libfreetype6-dev \
     locales \
     jpegoptim optipng pngquant gifsicle \
-    vim nano \
+    nano \
     zip unzip \
     git \
     curl
