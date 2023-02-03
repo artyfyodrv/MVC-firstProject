@@ -2,7 +2,7 @@
 
 namespace App\Kernel\Connections;
 
-use Error;
+use     Error;
 use Exception;
 use mysqli;
 use Throwable;

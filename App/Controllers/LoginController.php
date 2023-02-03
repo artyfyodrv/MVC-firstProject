@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Entities\User;
+use App\Kernel\LoginValidation;
+
 class LoginController
 {
     static function login()
@@ -13,9 +16,28 @@ class LoginController
 
     static function loginSuccess()
     {
-        $login = $_POST['login'];
-        $password = $_POST['password'];
+        $errorsLogin = [];
+        $user = new User();
 
-        include_once __DIR__ . "/../Views/login.php";
+        $objValidations = new LoginValidation();
+        $errorsLogin = $objValidations->validateForms($user);
+
+
+        if (empty($errorsLogin)) {
+            header('Location: cabinet');
+            $_SESSION['auth'] = true;
+            $_SESSION['login'] = $user->getLogin();
+            $_SESSION['username'] = $user->getName();
+
+        } else {
+
+            include_once __DIR__ . "/../Views/login.php";
+        }
+    }
+        static function logOut()
+        {
+            session_destroy();
+            header('Location: http://127.0.0.1:8080');
+
     }
 }
