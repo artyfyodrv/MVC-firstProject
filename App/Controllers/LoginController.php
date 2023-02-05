@@ -28,6 +28,7 @@ class LoginController
             $_SESSION['auth'] = true;
             $_SESSION['login'] = $user->getLogin();
             $_SESSION['username'] = $user->getName();
+            $_SESSION['password'] = $user->getPassword();
 
         } else {
 
@@ -37,7 +38,7 @@ class LoginController
         static function logOut()
         {
             session_destroy();
-            header('Location: http://127.0.0.1:8080');
+            header('Location: http://127.0.0.1:8081');
 
     }
 }

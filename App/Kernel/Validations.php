@@ -15,6 +15,7 @@ class Validations
         $this->checksLogin($user->getLogin());
         $this->checksName($user->getName());
         $this->checkEmail($user->getEmail());
+        $this->checkNameLogin($user->getName(), $user->getLogin());
 
         return $this->validationErrors;
     }
@@ -29,7 +30,7 @@ class Validations
     protected function checksLogin(string $login): void
     {
         if (empty($login)) {
-            $this->validationErrors[] = 'заполните поля логин';
+            $this->validationErrors[] = 'Заполните поля логин';
         }
 
     }
@@ -37,14 +38,20 @@ class Validations
     protected function checksName(string $name): void
     {
         if (empty($name)) {
-            $this->validationErrors[] = 'заполните поле имя пользователя';
+            $this->validationErrors[] = 'Заполните поле имя пользователя';
         }
     }
 
     protected function checkEmail(string $email): void
     {
         if (empty($email)) {
-            $this->validationErrors[] = 'заполните поле email';
+            $this->validationErrors[] = 'Заполните поле email';
+        }
+    }
+    protected function checkNameLogin(string $login, string $name): void
+    {
+        if($login === $name) {
+            $this->validationErrors[] = 'Логин не может совпадать с именем пользователя';
         }
     }
 }
