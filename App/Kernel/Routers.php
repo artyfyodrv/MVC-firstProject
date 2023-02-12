@@ -39,6 +39,9 @@ class Routers
                 case "/login":
                     LoginController::loginSuccess();
                     break;
+                case "/cabinet":
+                    CabinetController::changePassword();
+                    break;
                 default:
                     echo "405";
             }

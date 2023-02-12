@@ -14,16 +14,16 @@ class MySQLConnection
 {
     private mysqli $connection;
     private static ?MySQLConnection $_instance = null;
-    private string $host = "mysql";
-    private string $username = "local";
-    private string $password = "local";
-    private string $database = "db";
+    private string $host = "mvcsite.site";
+    private string $username = "root";
+    private string $password = "";
+    private string $database = "mvcsite";
 
     private function __construct()
     {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         try {
-            $this->connection = new mysqli($this->host, $this->username, $this->password, $this->database);
+            $this->connection = new mysqli($this->host, $this->username, $this->password, $this->database, 3306);
         } catch (Error|Exception|Throwable $t) {
             print_r($t);
         }

@@ -31,7 +31,7 @@ class CabinetController
 
     }
 
-    public function changePassword()
+    static function changePassword(): void
     {
 
 
@@ -47,6 +47,7 @@ class CabinetController
         $errorsCabinet = $objValidations->validateForms($password, $newpassword, $passconfirm,);
 
         if (empty($errorsCabinet)) {
+           $newpassword = password_hash($newpassword, PASSWORD_DEFAULT);
             $connect = MySQLConnection::getInstance();
             $result = $connect->getConnection()
                 ->query("UPDATE users SET password='$newpassword' WHERE user_name='$username'");

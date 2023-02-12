@@ -44,7 +44,7 @@ class CabinetValidations
         if ($newpassword !== $passconfirm ) {
             $this->validateError[] = 'Новые пароли не совпадают';
         }
-        if ($password !== $bdpassword) {
+        if (!$password == password_verify($password, $bdpassword)) {
             $this->validateError[] = 'Старый пароль не совпадает';
         } else {
             var_dump($password);

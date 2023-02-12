@@ -34,13 +34,21 @@ class RegController
         $bdemail = $user->getEmail();
         $bdname = $user->getName();
 
+
         // запись в бд если нет ошибок в $errors
         if (empty($errors))
         {
+            $bdpass = password_hash($bdpass, PASSWORD_DEFAULT);
+
             $connect = MySQLConnection::getInstance();
-            $connect->getConnection()
-                ->query("INSERT INTO users(`login`, `password`, `email`, `user_name`)
+            try {
+
+                $connect->getConnection()
+                    ->query("INSERT INTO users(`login`, `password`, `email`, `user_name`)
                             VALUE ('$bdlogin', '$bdpass', '$bdemail', '$bdname');");
+            } catch (\Throwable $t){
+                print_r($t);
+            }
         }
 
         include_once __DIR__ . "/../Views/registration.php";
